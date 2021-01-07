@@ -20,7 +20,17 @@
   </div>
 
   <div class="field">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |c| %>
+      <%= c.check_box %> <%= c.text %><br>
+    <% end %>
+  </div>
+
+  <h3>OR create a new tag: </h3>
+  <div class="field">
+    <%= f.fields_for :tags do |t| %>
+      <%= t.label :name %>
+      <%= t.text_field :name %>
+    <% end %>
   </div>
 
   <div class="actions">
